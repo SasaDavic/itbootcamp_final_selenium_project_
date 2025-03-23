@@ -10,6 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
+import pages.LoginPage;
 import pages.NavPage;
 
 public abstract class BasicTests {
@@ -18,6 +19,7 @@ public abstract class BasicTests {
 	protected WebDriverWait wait;
 	protected String baseUrl = "https://vue-demo.daniel-avellaneda.com";
 	protected NavPage navPage;
+	protected LoginPage loginPage;
 	
 	@BeforeClass
 	public void setup() {
@@ -37,6 +39,7 @@ public abstract class BasicTests {
         
         // Initialize page objects
         navPage = new NavPage(driver, wait);
+        loginPage = new LoginPage(driver, wait);
         
 	}
 	
@@ -49,6 +52,7 @@ public abstract class BasicTests {
 	@AfterMethod
 	public void afterMethod() {
 	// Clean up after each test, if needed (e.g., clear cookies, etc.)	
+	//afterMethod - gde se kreira screenshot stranice u slucaju da test ne prodje
 	}
 	
 	@AfterClass
