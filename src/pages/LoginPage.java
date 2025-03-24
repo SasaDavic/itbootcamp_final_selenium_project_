@@ -16,6 +16,7 @@ public class LoginPage {
 		this.wait = wait;
 	}
 	
+//	Verify that we are on the login page	
 	public void waitUntilLoginHeaderTitleIsVisible() {
 		wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Login"));
 	}
@@ -26,5 +27,9 @@ public class LoginPage {
 	
 	public WebElement getPasswordInput() {
 		return driver.findElement(By.id("password"));
+	}
+	
+	public WebElement getLoginButton() {
+		return driver.findElement(By.xpath("//button[@type='submit']"));
 	}
 }

@@ -34,5 +34,30 @@ public class LoginTests extends BasicTests {
 	Assert.assertEquals(loginPage.getPasswordInput().getAttribute("type"), "password", "Attribute type is not the value \"password\"!");
 	
 	}
+	
+	@Test (priority = 30)
+	public void displaysErrorsWhenUserDoesNotExist() {
+//	Click on the login button from the navigation
+	navPage.getLoginLink().click();
+	loginPage.waitUntilLoginHeaderTitleIsVisible();
+//	Fill in the login form with login credentials:
+//	email: non-existing-user@gmal.com
+//	password: password123
+	loginPage.getEmailInput().sendKeys("non-existing-user@gmal.com");
+	loginPage.getPasswordInput().sendKeys("password123");
+//	Click on the login button
+	loginPage.getLoginButton().click();
+//	Wait for the error popup to become visible
+	messagePopUpPage.waitForTheErrorPopupToBecomeVisible();
+//	Verify that the error message contains 'User does not exist'
+	Assert.assertEquals(messagePopUpPage.popUpMessage(), 
+			"User does not exists", 
+			"Message is not as expected!");
+//	Verify that the page URL contains the /login route
+	Assert.assertEquals(driver.getCurrentUrl(), 
+			"https://vue-demo.daniel-avellaneda.com/login",
+			"You're not on login page!");
+	
+	}
 
 }
