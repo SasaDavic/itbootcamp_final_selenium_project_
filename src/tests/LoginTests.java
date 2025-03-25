@@ -59,5 +59,36 @@ public class LoginTests extends BasicTests {
 			"You're not on login page!");
 	
 	}
+	
+	@Test (priority = 40)
+	public void displaysErrorsWhenPasswordIsWrong() {
+//	Click on the login button from the navigation
+	navPage.getLoginLink().click();
+	loginPage.waitUntilLoginHeaderTitleIsVisible();
+//	Fill in the login form with login credentials:
+//	email: admin@admin.com
+//	password: password123	
+	loginPage.getEmailInput().sendKeys("admin@admin.com");
+	loginPage.getPasswordInput().sendKeys("password123");
+//	Click on the login button
+	loginPage.getLoginButton().click();
+//	Wait for the error popup to become visible
+	messagePopUpPage.waitForTheErrorPopupToBecomeVisible();
+//	Verify that the error message contains 'Wrong password'	
+	Assert.assertEquals(messagePopUpPage.popUpMessage(), 
+			"Wrong password", 
+			"Message is not as expected!");
+//	Verify that the page URL contains the /login route	
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("/login"), 
+			"You're not on login page!");
+//close message pop up
+	messagePopUpPage.getCloseButton().click();
+	
+	
+	
+	
+	
+	}
 
+	
 }
