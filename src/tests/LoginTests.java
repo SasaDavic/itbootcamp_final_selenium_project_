@@ -16,6 +16,7 @@ public class LoginTests extends BasicTests {
 	navPage.selectLanguage(LanguageOption.EN);
 //	Click on the login button from the navigation
 	navPage.getLoginLink().click();
+	loginPage.waitUntilLoginHeaderTitleIsVisible();
 //	Verify that the URL contains the /login route
 	Assert.assertTrue(driver.getCurrentUrl().contains("/login"), 
 			"You're not on login page!");
@@ -81,7 +82,7 @@ public class LoginTests extends BasicTests {
 //	Verify that the page URL contains the /login route	
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("/login"), 
 			"You're not on login page!");
-//close message pop up
+//	close message pop up
 	messagePopUpPage.getCloseButton().click();
 	
 	}
@@ -95,6 +96,7 @@ public class LoginTests extends BasicTests {
 	loginPage.getEmailInput().sendKeys("admin@admin.com");
 	loginPage.getPasswordInput().sendKeys("12345");
 	loginPage.getLoginButton().click();
+	navPage.waitUntilLoginHeaderTitleIsVisible();
 //	Verify that the page URL contains the /home route.
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("/home"), 
 			"You are not on home page");

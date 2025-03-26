@@ -16,6 +16,11 @@ public class NavPage {
 		this.wait = wait;
 	}
 
+//	Verify that we are on the home page	
+	public void waitUntilLoginHeaderTitleIsVisible() {
+		wait.until(ExpectedConditions.or(ExpectedConditions.textToBe(By.tagName("h1"), "Landing"),
+			    ExpectedConditions.textToBe(By.tagName("h1"), "Welcome Super Administrator"))) ;
+	}
 	public WebElement getHomeLink() {
 		return driver.findElement(By.partialLinkText("HOME"));
 	}
