@@ -84,11 +84,24 @@ public class LoginTests extends BasicTests {
 //close message pop up
 	messagePopUpPage.getCloseButton().click();
 	
-	
-	
-	
-	
 	}
-
+	
+	@Test (priority = 50)
+	public void login() {
+//	Click on the login button in the navigation.
+	navPage.getLoginLink().click();
+	loginPage.waitUntilLoginHeaderTitleIsVisible();
+//	Fill in the login form with the provided credentials.
+	loginPage.getEmailInput().sendKeys("admin@admin.com");
+	loginPage.getPasswordInput().sendKeys("12345");
+	loginPage.getLoginButton().click();
+//	Verify that the page URL contains the /home route.
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("/home"), 
+			"You are not on home page");
+	}
+	
+	
+	
+	
 	
 }
