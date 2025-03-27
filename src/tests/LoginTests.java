@@ -109,6 +109,8 @@ public class LoginTests extends BasicTests {
 	Assert.assertTrue(navPage.getLogoutButton().isDisplayed(), "Logout button is not visible!");
 //	Click on the logout button.
 	navPage.getLogoutButton().click();
+// 	wait for user to logout
+	loginPage.waitUntilLoginHeaderTitleIsVisible();
 	}
 	
 	
