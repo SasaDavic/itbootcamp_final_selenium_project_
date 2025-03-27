@@ -1,5 +1,6 @@
 package tests;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -102,7 +103,13 @@ public class LoginTests extends BasicTests {
 			"You are not on home page");
 	}
 	
-	
+	@Test (priority = 60)
+	public void logout() {
+//	Verify that the logout button is visible on the page.
+	Assert.assertTrue(navPage.getLogoutButton().isDisplayed(), "Logout button is not visible!");
+//	Click on the logout button.
+	navPage.getLogoutButton().click();
+	}
 	
 	
 	
