@@ -15,6 +15,17 @@ public class MessagePopUpPage {
 		this.driver = driver;
 		this.wait = wait;
 	}
+	public void waitForImportantMessageToBecomeVisible() {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'v-card__title')]")));
+	}
+	
+	public String importantMessage() {
+		return driver.findElement(By.xpath("//div[contains(@class,'v-card__title')]")).getText();
+	}
+	
+	public WebElement getImportantMessageCloseButton() {
+		return driver.findElement(By.className("btnClose"));
+	}
 	
 	public void waitForTheErrorPopupToBecomeVisible() {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'error')]")));

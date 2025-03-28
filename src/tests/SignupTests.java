@@ -1,7 +1,9 @@
 package tests;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class SignupTests extends BasicTests {
 	
@@ -70,22 +72,22 @@ public class SignupTests extends BasicTests {
 	
 	
 	@Test (priority = 40)
-	public void signup() {
+	public void signup() throws InterruptedException {
 //	Click the sign-up button in the navigation
 	navPage.getSignUpLink().click();
 //	Fill in the registration form with the provided data
-	signupPage.getNameInput().sendKeys("Sasa Zivkovic");
-	signupPage.getEmailInput().sendKeys("sasa.zivkovic@itbootcamp.rs");
+	signupPage.getNameInput().sendKeys("Sasa Zivkovic1");
+	signupPage.getEmailInput().sendKeys("sasa.zivkovic1@itbootcamp.rs");
 	signupPage.getPasswordInput().sendKeys("12345");
 	signupPage.getConfirmPasswordInput().sendKeys("12345");
 //	Click the sign-up button
 	signupPage.getSignupButton().click();
 //	Load the /home page
 	navPage.waitUntilLoginHeaderTitleIsVisible();
-//	Verify that the notification dialog contains the text "IMPORTANT: Verify your account"
-
-//	Click the Close button in the dialog
-	
+	Thread.sleep(2000);
+	messagePopUpPage.waitForImportantMessageToBecomeVisible();
+	softAssert.assertEquals(messagePopUpPage.importantMessage(), " IMPORTANT: Verify your account ", "Message is not as exspected!");
+	messagePopUpPage.getImportantMessageCloseButton().click();
 //	Click Logout
 	navPage.getLogoutButton();
 	}

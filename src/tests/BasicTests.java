@@ -9,6 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.asserts.SoftAssert;
 
 import pages.LoginPage;
 import pages.MessagePopUpPage;
@@ -24,6 +25,7 @@ public abstract class BasicTests {
 	protected LoginPage loginPage;
 	protected MessagePopUpPage messagePopUpPage;
 	protected SignupPage signupPage;
+	protected SoftAssert softAssert;
 	
 	@BeforeClass
 	public void setup() {
@@ -38,8 +40,9 @@ public abstract class BasicTests {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         
-        // Initialize explicit wait
+        // Initialize explicit wait and soft assert
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        softAssert = new SoftAssert();
         
         // Initialize page objects
         navPage = new NavPage(driver, wait);
