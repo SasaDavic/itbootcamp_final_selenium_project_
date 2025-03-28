@@ -76,8 +76,8 @@ public class SignupTests extends BasicTests {
 //	Click the sign-up button in the navigation
 	navPage.getSignUpLink().click();
 //	Fill in the registration form with the provided data
-	signupPage.getNameInput().sendKeys("Sasa Zivkovic1");
-	signupPage.getEmailInput().sendKeys("sasa.zivkovic1@itbootcamp.rs");
+	signupPage.getNameInput().sendKeys("Sasa Zivkovic");
+	signupPage.getEmailInput().sendKeys("sasa.zivkovic@itbootcamp.rs");
 	signupPage.getPasswordInput().sendKeys("12345");
 	signupPage.getConfirmPasswordInput().sendKeys("12345");
 //	Click the sign-up button
@@ -86,7 +86,8 @@ public class SignupTests extends BasicTests {
 	navPage.waitUntilLoginHeaderTitleIsVisible();
 	Thread.sleep(2000);
 	messagePopUpPage.waitForImportantMessageToBecomeVisible();
-	softAssert.assertEquals(messagePopUpPage.importantMessage(), " IMPORTANT: Verify your account ", "Message is not as exspected!");
+	softAssert.assertEquals(messagePopUpPage.importantMessage(), "IMPORTANT: Verify your account", "Message is not as exspected!");
+	softAssert.assertAll();
 	messagePopUpPage.getImportantMessageCloseButton().click();
 //	Click Logout
 	navPage.getLogoutButton();
