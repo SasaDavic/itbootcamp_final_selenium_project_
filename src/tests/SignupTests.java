@@ -72,18 +72,22 @@ public class SignupTests extends BasicTests {
 	@Test (priority = 40)
 	public void signup() {
 //	Click the sign-up button in the navigation
-
+	navPage.getSignUpLink().click();
 //	Fill in the registration form with the provided data
-
+	signupPage.getNameInput().sendKeys("Sasa Zivkovic");
+	signupPage.getEmailInput().sendKeys("sasa.zivkovic@itbootcamp.rs");
+	signupPage.getPasswordInput().sendKeys("12345");
+	signupPage.getConfirmPasswordInput().sendKeys("12345");
 //	Click the sign-up button
-
+	signupPage.getSignupButton().click();
 //	Load the /home page
-
+	navPage.waitUntilLoginHeaderTitleIsVisible();
 //	Verify that the notification dialog contains the text "IMPORTANT: Verify your account"
 
 //	Click the Close button in the dialog
-
+	
 //	Click Logout
+	navPage.getLogoutButton();
 	}
 	
 }
