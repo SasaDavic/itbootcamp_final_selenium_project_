@@ -16,7 +16,7 @@ public class SignupPage {
 		this.wait = wait;
 	}
 	
-	public void waiUntilSignupHeaderTitleIsVisible() {
+	public void waitUntilSignupHeaderTitleIsVisible() {
 		wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Signup"));
 	}
 	
