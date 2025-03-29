@@ -19,7 +19,6 @@ public class NavPage {
 //	Verify that we are on the home page	
 	public void waitUntilLoginHeaderTitleIsVisible() {
 		wait.until(ExpectedConditions.or(ExpectedConditions.textToBe(By.tagName("h1"), "Landing"),
-			    ExpectedConditions.textToBe(By.tagName("h1"), "Welcome Super Administrator"),
 			    ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"), "Welcome"))) ;
 	}
 	public WebElement getHomeLink() {
@@ -61,6 +60,15 @@ public class NavPage {
 	public boolean isDarkTheme() {
 		// When the attribute is true, the theme is dark, so it returns true; otherwise, it is light.
 		return Boolean.parseBoolean(this.getThemeSwitchCheckbox().getAttribute("aria-checked"));
+	}
+	
+	public boolean isAdminButtonVisible() {
+		try {
+			//Without '!= null', we could get a NullPointerException if the adminButton is null.
+			return wait.until(ExpectedConditions.visibilityOf(getAdminButton())) != null;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
 	private WebElement getAdminButton() {

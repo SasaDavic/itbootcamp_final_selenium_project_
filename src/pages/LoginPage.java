@@ -32,4 +32,20 @@ public class LoginPage {
 	public WebElement getLoginButton() {
 		return driver.findElement(By.xpath("//button[@type='submit']"));
 	}
+	
+	public void loginAsAdmin() {
+		wait.until(ExpectedConditions.visibilityOf(getEmailInput()));
+		
+		WebElement emailInput = this.getEmailInput();
+		WebElement passwordInput = this.getPasswordInput();
+		WebElement loginButton = this.getLoginButton();
+		
+		emailInput.clear();
+		emailInput.sendKeys("admin@admin.com");
+		passwordInput.clear();
+		passwordInput.sendKeys("12345");
+		loginButton.click();
+// TODO: Ensure to verify if the admin button is visible on the NavPage after login.
+
+	}
 }

@@ -94,10 +94,9 @@ public class LoginTests extends BasicTests {
 	navPage.getLoginLink().click();
 	loginPage.waitUntilLoginHeaderTitleIsVisible();
 //	Fill in the login form with the provided credentials.
-	loginPage.getEmailInput().sendKeys("admin@admin.com");
-	loginPage.getPasswordInput().sendKeys("12345");
-	loginPage.getLoginButton().click();
+	loginPage.loginAsAdmin();
 	navPage.waitUntilLoginHeaderTitleIsVisible();
+	Assert.assertTrue(navPage.isAdminButtonVisible(), "There is no admin button!");
 //	Verify that the page URL contains the /home route.
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("/home"), 
 			"You are not on home page");
