@@ -71,20 +71,20 @@ public class NavPage {
 		}
 	}
 	
-	private WebElement getAdminButton() {
+	public WebElement getAdminButton() {
 		return driver.findElement(By.className("btnAdmin"));
 	}
 	
 	public WebElement getAdminMenuOption_CitiesLink() {
-		this.getAdminButton().click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("list-item-130")));
-		return driver.findElement(By.id("list-item-130"));
+		By locator = By.xpath("//div[contains(text(),'Cities')]");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		return driver.findElement(locator);
 	}
 	
 	public WebElement getAdminMenuOption_UsersLink() {
-		this.getAdminButton().click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("list-item-133")));
-		return driver.findElement(By.id("list-item-133"));
+		By locator = By.xpath("//div[contains(text(),'Users')]");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		return driver.findElement(locator);
 	}
 	
 	private WebElement getLanguageButton() {
