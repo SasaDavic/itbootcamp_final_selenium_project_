@@ -17,7 +17,7 @@ public class NavPage {
 	}
 
 //	Verify that we are on the home page	
-	public void waitUntilLoginHeaderTitleIsVisible() {
+	public void waitUntilHomeHeaderTitleIsVisible() {
 		wait.until(ExpectedConditions.or(ExpectedConditions.textToBe(By.tagName("h1"), "Landing"),
 			    ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"), "Welcome"))) ;
 	}

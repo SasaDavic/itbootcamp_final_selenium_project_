@@ -60,14 +60,14 @@ public class SignupTests extends BasicTests {
 //		Wait for the message popup to become visible
 		messagePopUpPage.waitForTheErrorPopupToBecomeVisible();
 //		Verify that the error message contains the text "E-mail already exists"
-		Assert.assertEquals(messagePopUpPage.popUpMessage(), 
+		Assert.assertEquals(messagePopUpPage.getErrorPopUpMessage(), 
 				"E-mail already exists", 
 				"Pop-up message is not as expected!");
 //		Verify that the URL still contains the /signup route
 		Assert.assertTrue(driver.getCurrentUrl().contains("/signup"), 
 				"URL doesn't contains the /signup route");
 //		close popUp message
-		messagePopUpPage.getCloseButton().click();
+		messagePopUpPage.getErrorCloseButton().click();
 	}
 	
 	
@@ -83,7 +83,7 @@ public class SignupTests extends BasicTests {
 //	Click the sign-up button
 	signupPage.getSignupButton().click();
 //	Load the /home page
-	navPage.waitUntilLoginHeaderTitleIsVisible();
+	navPage.waitUntilHomeHeaderTitleIsVisible();
 	messagePopUpPage.waitForImportantMessageToBecomeVisible();
 	softAssert.assertEquals(messagePopUpPage.importantMessage(), 
 			"IMPORTANT: Verify your account", 

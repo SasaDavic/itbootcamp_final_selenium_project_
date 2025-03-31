@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -25,6 +26,21 @@ public class CitiesPage {
 		return driver.findElement(By.className("btnNewItem"));
 	}
 	
+	//Dialog For Creating And Editing
+	public void waitForTheDialogForCreatingAndEditingACityToAppear() {
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'v-card')]")));
+	}
+	public WebElement getDialogNameInput() {
+		return driver.findElement(By.id("name"));
+	}
+	public WebElement getDialogSaveButton() {
+		WebElement saveButton = driver.findElement(By.className("btnSave"));
+		wait.until(ExpectedConditions.elementToBeClickable(saveButton));
+		return saveButton;
+	}
+	public WebElement getDialogCancelButton() {
+		return driver.findElement(By.className("btnCancel"));
+	}
 	
 	
 	

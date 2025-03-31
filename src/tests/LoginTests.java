@@ -52,7 +52,7 @@ public class LoginTests extends BasicTests {
 //	Wait for the error popup to become visible
 	messagePopUpPage.waitForTheErrorPopupToBecomeVisible();
 //	Verify that the error message contains 'User does not exist'
-	Assert.assertEquals(messagePopUpPage.popUpMessage(), 
+	Assert.assertEquals(messagePopUpPage.getErrorPopUpMessage(), 
 			"User does not exists", 
 			"Message is not as expected!");
 //	Verify that the page URL contains the /login route
@@ -77,14 +77,14 @@ public class LoginTests extends BasicTests {
 //	Wait for the error popup to become visible
 	messagePopUpPage.waitForTheErrorPopupToBecomeVisible();
 //	Verify that the error message contains 'Wrong password'	
-	Assert.assertEquals(messagePopUpPage.popUpMessage(), 
+	Assert.assertEquals(messagePopUpPage.getErrorPopUpMessage(), 
 			"Wrong password", 
 			"Message is not as expected!");
 //	Verify that the page URL contains the /login route	
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("/login"), 
 			"You're not on login page!");
 //	close message pop up
-	messagePopUpPage.getCloseButton().click();
+	messagePopUpPage.getErrorCloseButton().click();
 	
 	}
 	
@@ -95,7 +95,7 @@ public class LoginTests extends BasicTests {
 	loginPage.waitUntilLoginHeaderTitleIsVisible();
 //	Fill in the login form with the provided credentials.
 	loginPage.loginAsAdmin();
-	navPage.waitUntilLoginHeaderTitleIsVisible();
+	navPage.waitUntilHomeHeaderTitleIsVisible();
 	Assert.assertTrue(navPage.isAdminButtonVisible(), "There is no admin button!");
 //	Verify that the page URL contains the /home route.
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("/home"), 

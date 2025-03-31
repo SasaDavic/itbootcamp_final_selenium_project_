@@ -15,6 +15,8 @@ public class MessagePopUpPage {
 		this.driver = driver;
 		this.wait = wait;
 	}
+	
+	//Important Message
 	public void waitForImportantMessageToBecomeVisible() {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'v-card__title')]")));
 	}
@@ -27,16 +29,31 @@ public class MessagePopUpPage {
 		return driver.findElement(By.className("btnClose"));
 	}
 	
+	//Pop-up Error Message
 	public void waitForTheErrorPopupToBecomeVisible() {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'error')]")));
 	}
 	
-	public String popUpMessage() {
+	public String getErrorPopUpMessage() {
 		return driver.findElement(By.xpath("//div[contains(@class, 'error')]//li")).getText();
 	}
 	
-	public WebElement getCloseButton() {
+	public WebElement getErrorCloseButton() {
 		return driver.findElement(By.xpath("//div[contains(@class, 'error')]//button"));
 	}
+	
+	//Pop-up Success Message
+	public void waitForTheSuccessPopupToBecomeVisible() {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'success')]")));
+	}
+	
+	public String getSuccessPopUpMessage() {
+		return driver.findElement(By.xpath("//div[contains(@class, 'success')]/div")).getText();
+	}
+	
+	public WebElement getSuccessCloseButton() {
+		return driver.findElement(By.xpath("//div[contains(@class, 'success')]/div/button"));
+	}
+	
 	
 }
