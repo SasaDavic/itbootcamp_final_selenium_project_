@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,8 +20,8 @@ public class CitiesPage {
 		this.wait = wait;
 	}
 	
-	public WebElement getSearchInput() {
-		return driver.findElement(By.id("search"));
+	public WebElement getSearchInput() {		
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search")));
 	}
 	
 	public WebElement getNewItemButton() {
@@ -42,6 +44,15 @@ public class CitiesPage {
 		return driver.findElement(By.className("btnCancel"));
 	}
 	
+	private List<WebElement> tableRows() {
+		return driver.findElements(By.xpath("//tbody/tr"));		
+	}
+	//1 is first row, 2 is second row,...
+	public WebElement getEditButton(int rowNumber) {
+		return this.tableRows().get(rowNumber - 1).findElement(By.id("edit"));
+	}
 	
-	
+	public void waitForSearchResultsToBe(int resultNumbers) {
+		wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//tbody/tr"), resultNumbers));
+	}
 }

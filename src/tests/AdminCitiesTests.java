@@ -76,24 +76,37 @@ public class AdminCitiesTests extends BasicTests{
 
 	}
 	
-	public void editCity() {
+	@Test (priority = 40)
+	public void editCity() throws InterruptedException {
 	//	Click the admin button in the navigation.
-
+		navPage.waitUntilHomeHeaderTitleIsVisible();
+		if (navPage.isAdminButtonVisible() == true) {
+			navPage.getAdminButton().click();
+		} else {
+			System.out.println("Admin button is not visible!");
+		}
 	//	Click the Cities button from the dropdown Admin menu.
-
+		navPage.getAdminMenuOption_CitiesLink();
+		Thread.sleep(2000);
+		navPage.getAdminMenuOption_CitiesLink();
 	//	In the search field, enter the old city name.
-
+		citiesPage.getSearchInput().clear();
+		citiesPage.getSearchInput().sendKeys("Nis");
 	//	Wait for the table to show 1 row.
-
+		citiesPage.waitForSearchResultsToBe(1);
 	//	Click the Edit button in the first row.
-
+		citiesPage.getEditButton(1).click();
 	//	Enter the new city name.
-
+		citiesPage.getDialogNameInput().clear();
+		citiesPage.getDialogNameInput().sendKeys("Kikinda");
 	//	Click the Save button.
-
+		citiesPage.getDialogSaveButton().click();
 	//	Wait for the popup displaying the message to appear.
-
+		messagePopUpPage.waitForTheSuccessPopupToBecomeVisible();
 	//	Verify that the message contains the text "Saved successfully".
+		System.out.println(messagePopUpPage.getSuccessPopUpMessage());
+		Assert.assertTrue(messagePopUpPage.getSuccessPopUpMessage().contains("Saved successfully"), 
+				"Message is not as expected!");
 	}
 	
 	public void searchCity() {
