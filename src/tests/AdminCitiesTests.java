@@ -1,7 +1,5 @@
 package tests;
 
-import static org.testng.Assert.assertTrue;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -58,7 +56,7 @@ public class AdminCitiesTests extends BasicTests{
 	//	Click the admin button in the navigation.
 		navPage.getAdminButton().click();
 	//	Click the Cities button from the dropdown Admin menu.
-		navPage.getAdminMenuOption_CitiesLink().click();
+		navPage.clickOnCitiesLinkWithActions();
 	//	Click the New Item button.
 		citiesPage.getNewItemButton().click();
 	//	Wait for the dialog for creating and editing a city to appear.
@@ -86,9 +84,7 @@ public class AdminCitiesTests extends BasicTests{
 			System.out.println("Admin button is not visible!");
 		}
 	//	Click the Cities button from the dropdown Admin menu.
-		navPage.getAdminMenuOption_CitiesLink();
-		Thread.sleep(2000);
-		navPage.getAdminMenuOption_CitiesLink();
+		navPage.clickOnCitiesLinkWithActions();
 	//	In the search field, enter the old city name.
 		citiesPage.getSearchInput().clear();
 		citiesPage.getSearchInput().sendKeys("Nis");

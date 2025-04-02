@@ -1,8 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -76,11 +78,17 @@ public class NavPage {
 	}
 	
 	public WebElement getAdminMenuOption_CitiesLink() {
-		By locator = By.xpath("//div[contains(text(),'Cities')]");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		By locator = By.xpath("//a[@href='/admin/cities']");
+		wait.until(ExpectedConditions.elementToBeClickable(locator));
 		return driver.findElement(locator);
 	}
-	
+	public void clickOnCitiesLinkWithActions() {
+	    By locator = By.xpath("//a[@href='/admin/cities']");
+	    WebElement citiesLink = wait.until(ExpectedConditions.elementToBeClickable(locator));
+
+	    Actions actions = new Actions(driver);
+	    actions.moveToElement(citiesLink).click().perform();
+	}
 	public WebElement getAdminMenuOption_UsersLink() {
 		By locator = By.xpath("//div[contains(text(),'Users')]");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));

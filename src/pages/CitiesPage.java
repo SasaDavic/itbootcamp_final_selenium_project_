@@ -25,7 +25,7 @@ public class CitiesPage {
 	}
 	
 	public WebElement getNewItemButton() {
-		return driver.findElement(By.className("btnNewItem"));
+		return driver.findElement(By.xpath("//button[contains(@class, 'btnNewItem')]"));
 	}
 	
 	//Dialog For Creating And Editing
@@ -55,4 +55,5 @@ public class CitiesPage {
 	public void waitForSearchResultsToBe(int resultNumbers) {
 		wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//tbody/tr"), resultNumbers));
 	}
+	
 }
