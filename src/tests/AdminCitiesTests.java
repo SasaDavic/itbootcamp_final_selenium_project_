@@ -121,26 +121,28 @@ public class AdminCitiesTests extends BasicTests{
 		Assert.assertTrue(citiesPage.getCityName(1).contains("Kikinda"), "The city name is not as expected!");
 	}
 	
+	@Test (priority = 60)
 	public void deleteCity() {
 	//	Click the admin button in the navigation.
-
+		navPage.getAdminButton().click();
 	//	Click the Cities button from the dropdown Admin menu.
-
+		navPage.getAdminMenuOption_CitiesLink().click();
 	//	In the search field, enter the old city name.
-
+		citiesPage.getSearchInput().sendKeys("Kikinda");
 	//	Wait for the table to show 1 row.
-
+		citiesPage.waitForSearchResultsToBe(1);
 	//	Verify that the Name column of the first row contains the search text.
-
+		Assert.assertTrue(citiesPage.getCityName(1).contains("Kikinda"), "Expected city name is not in first row");
 	//	Click the Delete button in the first row.
-
+		citiesPage.getDeleteButton(1).click();
 	//	Wait for the delete dialog to appear.
-
+		citiesPage.waitForTheDialogForDeleteACityToAppear();
 	//	Click the Delete button in the dialog.
-
+		citiesPage.getDeleteButton().click();
 	//	Wait for the popup displaying the message to appear.
-
+		messagePopUpPage.waitForTheSuccessPopupToBecomeVisible();
 	//	Verify that the message contains the text "Deleted successfully".
+		Assert.assertTrue(messagePopUpPage.getSuccessPopUpMessage().contains("Deleted successfully"), "Message is not as expected!");
 	}
 	
 	

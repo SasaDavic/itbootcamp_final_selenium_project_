@@ -32,6 +32,15 @@ public class CitiesPage {
 	public void waitForTheDialogForCreatingAndEditingACityToAppear() {
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'v-card')]")));
 	}
+	
+	public void waitForTheDialogForDeleteACityToAppear() {
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Do you really want to delete this item?')]")));
+	}
+	public WebElement getDeleteButton() {
+		return driver.findElement(By.xpath("//*[contains(text(), ' Delete ')]/.."));
+	}
+	
+	
 	public WebElement getDialogNameInput() {
 		return driver.findElement(By.id("name"));
 	}
@@ -50,6 +59,9 @@ public class CitiesPage {
 	//1 is first row, 2 is second row,...
 	public WebElement getEditButton(int rowNumber) {
 		return this.tableRows().get(rowNumber - 1).findElement(By.id("edit"));
+	}
+	public WebElement getDeleteButton(int rowNumber) {
+		return this.tableRows().get(rowNumber - 1).findElement(By.id("delete"));
 	}
 	
 	public String getCityName(int rowNumber) {
