@@ -75,7 +75,7 @@ public class AdminCitiesTests extends BasicTests{
 	}
 	
 	@Test (priority = 40)
-	public void editCity() throws InterruptedException {
+	public void editCity() {
 	//	Click the admin button in the navigation.
 		navPage.waitUntilHomeHeaderTitleIsVisible();
 		if (navPage.isAdminButtonVisible() == true) {
@@ -105,16 +105,20 @@ public class AdminCitiesTests extends BasicTests{
 				"Message is not as expected!");
 	}
 	
-	public void searchCity() {
+	@Test (priority = 50)
+	public void searchCity() throws InterruptedException {
 	//	Click the admin button in the navigation.
-
+		navPage.getAdminButton().click();
 	//	Click the Cities button from the dropdown Admin menu.
-
+		navPage.clickOnCitiesLinkWithActions();
 	//	In the search field, enter the old city name.
-
+		citiesPage.getSearchInput().sendKeys("Kikinda");
 	//	Wait for the table to show 1 row.
-
+		citiesPage.waitForSearchResultsToBe(1);
 	//	Verify that the Name column of the first row contains the search text.
+		Thread.sleep(2000);
+		//treba da bude jednako, vidi kako da obrises Nis iz naziva
+		Assert.assertTrue(citiesPage.getCityName(1).contains("Kikinda"), "The city name is not as expected!");
 	}
 	
 	public void deleteCity() {

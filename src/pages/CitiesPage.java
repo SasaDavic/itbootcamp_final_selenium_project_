@@ -52,6 +52,10 @@ public class CitiesPage {
 		return this.tableRows().get(rowNumber - 1).findElement(By.id("edit"));
 	}
 	
+	public String getCityName(int rowNumber) {
+		return this.tableRows().get(rowNumber - 1).findElement(By.xpath("//td[2]")).getText();
+	}
+	
 	public void waitForSearchResultsToBe(int resultNumbers) {
 		wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//tbody/tr"), resultNumbers));
 	}
