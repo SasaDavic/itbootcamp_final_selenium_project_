@@ -27,7 +27,25 @@ public class AuthRoutesTests extends BasicTests{
 		Assert.assertTrue(driver.getCurrentUrl().contains("/login"), "You're not on login page");
 	}
 	
+	@Test (priority = 30)
+	public void forbidsVisitsToAdminCitiesURLIfNotAuthenticated() {
+		
+		navPage.waitUntilHomeHeaderTitleIsVisible();
+	//	Load the /admin/cities page.
+		driver.get(baseUrl + "/admin/cities");
+	//	Verify that the URL contains the /login route.
+		Assert.assertTrue(driver.getCurrentUrl().contains("/login"), "You're not on login page");
+	}
 	
+	@Test (priority = 40)
+	public void forbidsVisitsToAdminUsersURLIfNotAuthenticated() {
+		
+		navPage.waitUntilHomeHeaderTitleIsVisible();
+	//	Load the /admin/users page.
+		driver.get(baseUrl + "/admin/users");
+	//	Verify that the URL contains the /login route.
+		Assert.assertTrue(driver.getCurrentUrl().contains("/login"), "You're not on login page");
+	}
 	
 	
 	
