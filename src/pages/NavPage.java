@@ -23,6 +23,12 @@ public class NavPage {
 		wait.until(ExpectedConditions.or(ExpectedConditions.textToBe(By.tagName("h1"), "Landing"),
 			    ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"), "Welcome"))) ;
 	}
+//	Verify that we are on the home page on any language
+	public void waitUntilHomeHeaderTitleIsVisible(String titleName) {
+		wait.until(ExpectedConditions.or(ExpectedConditions.textToBe(By.tagName("h1"), titleName)));
+	}
+	
+	
 	public WebElement getHomeLink() {
 		return driver.findElement(By.partialLinkText("HOME"));
 	}
