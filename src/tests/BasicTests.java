@@ -14,6 +14,7 @@ import org.testng.asserts.SoftAssert;
 import pages.CitiesPage;
 import pages.LoginPage;
 import pages.MessagePopUpPage;
+import pages.MyProfilePage;
 import pages.NavPage;
 import pages.SignupPage;
 
@@ -28,6 +29,7 @@ public abstract class BasicTests {
 	protected SignupPage signupPage;
 	protected SoftAssert softAssert;
 	protected CitiesPage citiesPage;
+	protected MyProfilePage myProfilePage;
 	
 	@BeforeClass
 	public void setup() {
@@ -52,6 +54,7 @@ public abstract class BasicTests {
         messagePopUpPage = new MessagePopUpPage(driver, wait);
         signupPage = new SignupPage(driver, wait);
         citiesPage = new CitiesPage(driver, wait);
+        myProfilePage = new MyProfilePage(driver, wait);
 	}
 	
 	@BeforeMethod
