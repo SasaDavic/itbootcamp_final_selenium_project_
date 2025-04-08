@@ -12,7 +12,7 @@ public class SignupTests extends BasicTests {
 		
 //	Click the sign-up button in the navigation
 	navPage.getSignUpLink().click();
-	signupPage.waitUntilSignupHeaderTitleIsVisible();
+	signupPage.waitForPageToLoad();
 //	Verify that the URL contains the /signup route
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("/signup"),
 			"You are not on signup page!");
@@ -23,7 +23,7 @@ public class SignupTests extends BasicTests {
 	public void checksInputTypes() {
 //	Click the sign-up button in the navigation
 	navPage.getSignUpLink().click();
-	signupPage.waitUntilSignupHeaderTitleIsVisible();
+	signupPage.waitForPageToLoad();
 //	Verify that the name input field has the type attribute set to text	
 	Assert.assertEquals(signupPage.getNameInput().getAttribute("type"), 
 			"text", 
@@ -46,7 +46,7 @@ public class SignupTests extends BasicTests {
 	public void displaysErrorsWhenTheUserAlreadyExists() {
 //		Click the sign-up button in the navigation
 		navPage.getSignUpLink().click();
-		signupPage.waitUntilSignupHeaderTitleIsVisible();
+		signupPage.waitForPageToLoad();
 //		Verify that the URL contains the /signup route
 		Assert.assertTrue(driver.getCurrentUrl().endsWith("/signup"), 
 				"URL doesn't contains the /signup route");
@@ -83,7 +83,7 @@ public class SignupTests extends BasicTests {
 //	Click the sign-up button
 	signupPage.getSignupButton().click();
 //	Load the /home page
-	navPage.waitUntilHomeHeaderTitleIsVisible();
+	navPage.waitForPageToLoad();
 	messagePopUpPage.waitForImportantMessageToBecomeVisible();
 	softAssert.assertEquals(messagePopUpPage.importantMessage(), 
 			"IMPORTANT: Verify your account", 

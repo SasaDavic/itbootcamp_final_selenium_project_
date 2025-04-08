@@ -1,6 +1,5 @@
 package tests;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -16,7 +15,7 @@ public class ProfileTests extends BasicTests {
 	//	Navigate to the /profile page.
 		navPage.getMyProfileLink().click();
 	//	Verify that the current URL contains the /profile route.
-		myProfilePage.waitForMyProfilePageToLoad();
+		myProfilePage.waitForPageToLoad();
 		Assert.assertTrue(driver.getCurrentUrl().contains("/profile"), "You're not on correct route!");
 	//	Verify that the email input field has the value attribute set to admin@admin.com.
 		//System.out.println(myProfilePage.getEmailInput().getAttribute("value"));
@@ -69,25 +68,25 @@ public class ProfileTests extends BasicTests {
 	//	Click on the "My Profile" button from the navigation
 		navPage.getMyProfileLink().click();
 	//	Fill in the form with data
-		myProfilePage.getNameInput().clear();
+		myProfilePage.clearInputField(myProfilePage.getNameInput());
 		myProfilePage.getNameInput().sendKeys("Sasa Zivkovic");
-		myProfilePage.getPhoneInput().clear();
+		myProfilePage.clearInputField(myProfilePage.getPhoneInput());
 		myProfilePage.getPhoneInput().sendKeys("+38161283223");
-		myProfilePage.getCityInput().clear();
+		myProfilePage.clearInputField(myProfilePage.getCityInput());
 		myProfilePage.getCityInput().sendKeys("Bucaramanga");
-		myProfilePage.getCountryInput().clear();
+		myProfilePage.clearInputField(myProfilePage.getCountryInput());
 		myProfilePage.getCountryInput().sendKeys("Spain");
-		myProfilePage.getUrlTwitterInput().clear();
+		myProfilePage.clearInputField(myProfilePage.getUrlTwitterInput());
 		myProfilePage.getUrlTwitterInput().sendKeys("https://twitter.com/profile/milan1232");
-		myProfilePage.getUrlGitHubInput().clear();
+		myProfilePage.clearInputField(myProfilePage.getUrlGitHubInput());
 		myProfilePage.getUrlGitHubInput().sendKeys("https://github.com/SasaDavic");
 	//	Click on the "Save" button
 		myProfilePage.getSaveButton().click();
 	//	Verify that the message dialog is visible
 		messagePopUpPage.waitForTheSuccessPopupToBecomeVisible();
 	//	Verify that the message "Profile saved successfully" is displayed
-		Assert.assertTrue(messagePopUpPage.getSuccessPopUpMessage().contains("Profile saved successfully"), 
-				"Message is not as expected!");
+		Assert.assertTrue(messagePopUpPage.getSuccessPopUpMessage().contains("Profile saved successfuly"), 
+				"Message is not as expected! You got message: " + messagePopUpPage.getSuccessPopUpMessage());
 	//	Verify that each input now has a value attribute with the value entered in the form
 		Assert.assertEquals(myProfilePage.getNameInput().getText(), 
 				"Sasa Zivkovic", 
@@ -108,7 +107,7 @@ public class ProfileTests extends BasicTests {
 				"https://github.com/SasaDavic", 
 				"GitHub is not as expected!");
 	//	Click on the logout button
-		navPage.getLogoutButton().clear();
+		navPage.getLogoutButton().click();
 		
 	}
 	

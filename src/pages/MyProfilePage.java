@@ -3,55 +3,59 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MyProfilePage {
-
-	private WebDriver driver;
-	private WebDriverWait wait;
+public class MyProfilePage extends BasePage{
 	
-	public MyProfilePage(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+	public MyProfilePage(WebDriver driver) {
+		super(driver);
 	}
-	
-	public void waitForMyProfilePageToLoad() {
-		wait.until(ExpectedConditions.textToBe(By.xpath("//h1"), "My profile"));
+
+	@Override
+	public void waitForPageToLoad() {
+		waitForH1WithText("My profile");
 	}
 	
 	public WebElement getEmailInput() {
-		return driver.findElement(By.id("email"));
+		return find(By.id("email"));
 	}
 	
 	public WebElement getNameInput() {
-		return driver.findElement(By.id("name"));
+		return find(By.id("name"));
 	}
 	
 	public WebElement getPhoneInput() {
-		return driver.findElement(By.id("phone"));
+		return find(By.id("phone"));
 	}
-	//name of next input:
-	//	Select with search
-	//	Autocomplete with strict matching or
-	//	Dropdown input field
+	
+	/*		NAME of next input:
+		Select with search, Autocomplete with strict matching, Dropdown input field		*/
+	
 	public WebElement getCityInput() {
-		return driver.findElement(By.id("city"));
+		return find(By.id("city"));
 	}
 	
 	public WebElement getCountryInput() {
-		return driver.findElement(By.id("country"));
+		return find(By.id("country"));
 	}
 	
 	public WebElement getUrlTwitterInput() {
-		return driver.findElement(By.id("urlTwitter"));
+		return find(By.id("urlTwitter"));
 	}
 	
 	public WebElement getUrlGitHubInput() {
-		return driver.findElement(By.id("urlGitHub"));
+		return find(By.id("urlGitHub"));
 	}
 	
 	public WebElement getSaveButton() {
-		return driver.findElement(By.className("btnSave"));
+		return find(By.className("btnSave"));
 	}
+
+
+
+	
+
+	
 }

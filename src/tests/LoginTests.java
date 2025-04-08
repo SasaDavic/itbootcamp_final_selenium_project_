@@ -17,7 +17,7 @@ public class LoginTests extends BasicTests {
 	navPage.selectLanguage(LanguageOption.EN);
 //	Click on the login button from the navigation
 	navPage.getLoginLink().click();
-	loginPage.waitUntilLoginHeaderTitleIsVisible();
+	loginPage.waitForPageToLoad();
 //	Verify that the URL contains the /login route
 	Assert.assertTrue(driver.getCurrentUrl().contains("/login"), 
 			"You're not on login page!");
@@ -29,7 +29,7 @@ public class LoginTests extends BasicTests {
 // 	Clicks the login button from the navigation  
 	navPage.getLoginLink().click();
 //	Verify that we are on the login page	
-	loginPage.waitUntilLoginHeaderTitleIsVisible();
+	loginPage.waitForPageToLoad();
 // 	Verifies that the email input field has the attribute type with the value "email"  
 	Assert.assertEquals(loginPage.getEmailInput().getAttribute("type"), "email", "Attribute type is not the value \"email\"!");
 // 	Verifies that the password input field has the attribute type with the value "password"
@@ -41,7 +41,7 @@ public class LoginTests extends BasicTests {
 	public void displaysErrorsWhenUserDoesNotExist() {
 //	Click on the login button from the navigation
 	navPage.getLoginLink().click();
-	loginPage.waitUntilLoginHeaderTitleIsVisible();
+	loginPage.waitForPageToLoad();
 //	Fill in the login form with login credentials:
 //	email: non-existing-user@gmal.com
 //	password: password123
@@ -66,7 +66,7 @@ public class LoginTests extends BasicTests {
 	public void displaysErrorsWhenPasswordIsWrong() {
 //	Click on the login button from the navigation
 	navPage.getLoginLink().click();
-	loginPage.waitUntilLoginHeaderTitleIsVisible();
+	loginPage.waitForPageToLoad();
 //	Fill in the login form with login credentials:
 //	email: admin@admin.com
 //	password: password123	
@@ -92,10 +92,10 @@ public class LoginTests extends BasicTests {
 	public void login() {
 //	Click on the login button in the navigation.
 	navPage.getLoginLink().click();
-	loginPage.waitUntilLoginHeaderTitleIsVisible();
+	loginPage.waitForPageToLoad();
 //	Fill in the login form with the provided credentials.
 	loginPage.loginAsAdmin();
-	navPage.waitUntilHomeHeaderTitleIsVisible();
+	navPage.waitForPageToLoad();
 	Assert.assertTrue(navPage.isAdminButtonVisible(), "There is no admin button!");
 //	Verify that the page URL contains the /home route.
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("/home"), 
@@ -109,7 +109,7 @@ public class LoginTests extends BasicTests {
 //	Click on the logout button.
 	navPage.getLogoutButton().click();
 // 	wait for user to logout
-	loginPage.waitUntilLoginHeaderTitleIsVisible();
+	loginPage.waitForPageToLoad();
 	}
 	
 	

@@ -6,39 +6,39 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SignupPage {
+public class SignupPage extends BasePage{
 	
-	private WebDriver driver;
-	private WebDriverWait wait;
 	
-	public SignupPage(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+	public SignupPage(WebDriver driver) {
+		super(driver);
 	}
 	
-	public void waitUntilSignupHeaderTitleIsVisible() {
-		wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Signup"));
+	@Override
+	public void waitForPageToLoad() {
+		waitForH1WithText("Signup");
 	}
-	
+
 	public WebElement getNameInput() {
-		return driver.findElement(By.id("name"));
+		return find(By.id("name"));
 	}
 	
 	public WebElement getEmailInput() {
-		return driver.findElement(By.id("email"));
+		return find(By.id("email"));
 	}
 	
 	public WebElement getPasswordInput() {
-		return driver.findElement(By.id("password"));
+		return find(By.id("password"));
 	}
 	
 	public WebElement getConfirmPasswordInput() {
-		return driver.findElement(By.id("confirmPassword"));
+		return find(By.id("confirmPassword"));
 	}
 	
 	public WebElement getSignupButton() {
-		return driver.findElement(By.xpath("//button[@type='submit']"));
+		return find(By.xpath("//button[@type='submit']"));
 	}
+
+	
 	
 	
 	

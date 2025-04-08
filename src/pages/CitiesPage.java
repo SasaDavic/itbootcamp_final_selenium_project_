@@ -5,44 +5,45 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-public class CitiesPage {
+public class CitiesPage extends BasePage {
 
-	private WebDriver driver;
-	private WebDriverWait wait;
-	
-	
-	public CitiesPage(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+	public CitiesPage(WebDriver driver) {
+		super(driver);
+	}
+
+	//ovde se text na osnou kog cekamo ucitavanje stranice ne nalazi u h1
+	@Override
+	public void waitForPageToLoad() {
+		wait.until(ExpectedConditions.textToBe(By.xpath("//*[text()='Cities']"), "Cities"));
 	}
 	
 	public WebElement getSearchInput() {		
-		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search")));
+		return find(By.id("search"));
 	}
 	
 	public WebElement getNewItemButton() {
-		return driver.findElement(By.xpath("//button[contains(@class, 'btnNewItem')]"));
+		return find(By.className("btnNewItem"));
 	}
 	
 	//Dialog For Creating And Editing
 	public void waitForTheDialogForCreatingAndEditingACityToAppear() {
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'v-card')]")));
 	}
-	
+	//Dialog For Delete
 	public void waitForTheDialogForDeleteACityToAppear() {
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Do you really want to delete this item?')]")));
 	}
 	public WebElement getDeleteButton() {
-		return driver.findElement(By.xpath("//*[contains(text(), ' Delete ')]/.."));
+		return find(By.xpath("//*[contains(text(), ' Delete ')]/.."));
 	}
-	
-	
+		
 	public WebElement getDialogNameInput() {
-		return driver.findElement(By.id("name"));
+		return find(By.id("name"));
 	}
 	public WebElement getDialogSaveButton() {
 		WebElement saveButton = driver.findElement(By.className("btnSave"));
@@ -50,7 +51,7 @@ public class CitiesPage {
 		return saveButton;
 	}
 	public WebElement getDialogCancelButton() {
-		return driver.findElement(By.className("btnCancel"));
+		return find(By.className("btnCancel"));
 	}
 	
 	private List<WebElement> tableRows() {
@@ -71,5 +72,7 @@ public class CitiesPage {
 	public void waitForSearchResultsToBe(int resultNumbers) {
 		wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//tbody/tr"), resultNumbers));
 	}
+
+	
 	
 }

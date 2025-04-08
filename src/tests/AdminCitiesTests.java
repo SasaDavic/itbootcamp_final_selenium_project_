@@ -13,13 +13,12 @@ public class AdminCitiesTests extends BasicTests{
 				"URL is not as expected!");
 	}
 	
-
 	@Test (priority = 10)
 	public void visitsTheAdminCitiesPageAndListCities() {
 	//	Click the sign-up button in the navigation.
 		navPage.getLoginLink().click();
 	//	Log in to the system using admin credentials.
-		loginPage.waitUntilLoginHeaderTitleIsVisible();
+		loginPage.waitForPageToLoad();
 		loginPage.loginAsAdmin();
 	//	Click the admin button in the navigation.
 		Assert.assertTrue(navPage.isAdminButtonVisible(), "Admin button is not visible!");
@@ -52,7 +51,7 @@ public class AdminCitiesTests extends BasicTests{
 	
 	@Test (priority = 30)
 	public void createNewCity() {
-		navPage.waitUntilHomeHeaderTitleIsVisible();
+		navPage.waitForPageToLoad();
 	//	Click the admin button in the navigation.
 		navPage.getAdminButton().click();
 	//	Click the Cities button from the dropdown Admin menu.
@@ -62,7 +61,7 @@ public class AdminCitiesTests extends BasicTests{
 	//	Wait for the dialog for creating and editing a city to appear.
 		citiesPage.waitForTheDialogForCreatingAndEditingACityToAppear();
 	//	Enter the city name in the input field.
-		citiesPage.getDialogNameInput().clear();
+		citiesPage.clearInputField(citiesPage.getDialogNameInput());
 		citiesPage.getDialogNameInput().sendKeys("Nis");
 	//	Click the Save button.
 		citiesPage.getDialogSaveButton().click();
@@ -77,7 +76,7 @@ public class AdminCitiesTests extends BasicTests{
 	@Test (priority = 40)
 	public void editCity() {
 	//	Click the admin button in the navigation.
-		navPage.waitUntilHomeHeaderTitleIsVisible();
+		navPage.waitForPageToLoad();
 		if (navPage.isAdminButtonVisible() == true) {
 			navPage.getAdminButton().click();
 		} else {
@@ -86,14 +85,14 @@ public class AdminCitiesTests extends BasicTests{
 	//	Click the Cities button from the dropdown Admin menu.
 		navPage.clickOnCitiesLinkWithActions();
 	//	In the search field, enter the old city name.
-		citiesPage.getSearchInput().clear();
+		citiesPage.clearInputField(citiesPage.getSearchInput());
 		citiesPage.getSearchInput().sendKeys("Nis");
 	//	Wait for the table to show 1 row.
 		citiesPage.waitForSearchResultsToBe(1);
 	//	Click the Edit button in the first row.
 		citiesPage.getEditButton(1).click();
 	//	Enter the new city name.
-		citiesPage.getDialogNameInput().clear();
+		citiesPage.clearInputField(citiesPage.getDialogNameInput());
 		citiesPage.getDialogNameInput().sendKeys("Kikinda");
 	//	Click the Save button.
 		citiesPage.getDialogSaveButton().click();

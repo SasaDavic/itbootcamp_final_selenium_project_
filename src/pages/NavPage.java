@@ -8,53 +8,51 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class NavPage {
+public class NavPage extends BasePage{
 
-	private WebDriver driver;
-	private WebDriverWait wait;
+	public NavPage(WebDriver driver) {
+			super(driver);
+		}
 	
-	public NavPage(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
-	}
 
 //	Verify that we are on the home page	
-	public void waitUntilHomeHeaderTitleIsVisible() {
+	@Override
+	public void waitForPageToLoad() {
 		wait.until(ExpectedConditions.or(ExpectedConditions.textToBe(By.tagName("h1"), "Landing"),
-			    ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"), "Welcome"))) ;
+				ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"), "Welcome")));
 	}
+	
 //	Verify that we are on the home page on any language
 	public void waitUntilHomeHeaderTitleIsVisible(String titleName) {
-		wait.until(ExpectedConditions.or(ExpectedConditions.textToBe(By.tagName("h1"), titleName)));
+		wait.until(ExpectedConditions.textToBe(By.tagName("h1"), titleName));
 	}
 	
-	
 	public WebElement getHomeLink() {
-		return driver.findElement(By.partialLinkText("HOME"));
+		return find(By.partialLinkText("HOME"));
 	}
 	
 	public WebElement getAboutLink() {
-		return driver.findElement(By.partialLinkText("ABOUT"));
+		return find(By.partialLinkText("ABOUT"));
 	}
 	
 	public WebElement getMyProfileLink() {
-		return driver.findElement(By.partialLinkText("MY PROFILE"));
+		return find(By.partialLinkText("MY PROFILE"));
 	}
 	
 	public WebElement getLoginLink() {
-		return driver.findElement(By.partialLinkText("LOGIN"));
+		return find(By.partialLinkText("LOGIN"));
 	}
 	
 	public WebElement getSignUpLink() {
-		return driver.findElement(By.partialLinkText("SIGN UP"));
+		return find(By.partialLinkText("SIGN UP"));
 	}
 	
 	public WebElement getLogoutButton() {
-		return driver.findElement(By.xpath("//*[contains(@class, 'btnLogout')]"));
+		return find(By.xpath("//*[contains(@class, 'btnLogout')]"));
 	}
 	
 	public WebElement getThemeSwitchCheckbox() {
-		return driver.findElement(By.id("input-26"));
+		return find(By.id("input-26"));
 	}
 	
 //	public boolean isDarkTheme() {
@@ -80,29 +78,27 @@ public class NavPage {
 	}
 	
 	public WebElement getAdminButton() {
-		return driver.findElement(By.className("btnAdmin"));
+		return find(By.className("btnAdmin"));
 	}
 	
 	public WebElement getAdminMenuOption_CitiesLink() {
-		By locator = By.xpath("//a[@href='/admin/cities']");
-		wait.until(ExpectedConditions.elementToBeClickable(locator));
-		return driver.findElement(locator);
+		return find(By.xpath("//a[@href='/admin/cities']"));
 	}
+	
 	public void clickOnCitiesLinkWithActions() {
-	    By locator = By.xpath("//a[@href='/admin/cities']");
-	    WebElement citiesLink = wait.until(ExpectedConditions.elementToBeClickable(locator));
-
-	    Actions actions = new Actions(driver);
-	    actions.moveToElement(citiesLink).click().perform();
+		clickOnButton(getAdminMenuOption_CitiesLink());
 	}
+	
 	public WebElement getAdminMenuOption_UsersLink() {
-		By locator = By.xpath("//div[contains(text(),'Users')]");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-		return driver.findElement(locator);
+		return find(By.xpath("//div[contains(text(),'Users')]"));
+	}
+	
+	public void clickOnUsersLinkWithActions() {
+		clickOnButton(getAdminMenuOption_UsersLink());
 	}
 	
 	private WebElement getLanguageButton() {
-		return driver.findElement(By.xpath("//*[contains(@class, 'btnLocaleActivation')]"));
+		return find(By.xpath("//*[contains(@class, 'btnLocaleActivation')]"));
 	}
 	
 	// Find and click on the language option based on the selected enum locator.
@@ -111,4 +107,7 @@ public class NavPage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'v-menu__content')]")));
 		driver.findElement(languageOption.getLocator()).click();
 	}
+
+
+	
 }

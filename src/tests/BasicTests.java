@@ -49,12 +49,12 @@ public abstract class BasicTests {
         softAssert = new SoftAssert();
         
         // Initialize page objects
-        navPage = new NavPage(driver, wait);
-        loginPage = new LoginPage(driver, wait);
+        navPage = new NavPage(driver);
+        loginPage = new LoginPage(driver);
         messagePopUpPage = new MessagePopUpPage(driver, wait);
-        signupPage = new SignupPage(driver, wait);
-        citiesPage = new CitiesPage(driver, wait);
-        myProfilePage = new MyProfilePage(driver, wait);
+        signupPage = new SignupPage(driver);
+        citiesPage = new CitiesPage(driver);
+        myProfilePage = new MyProfilePage(driver);
 	}
 	
 	@BeforeMethod
