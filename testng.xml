@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Selenium Suite">
+  <test name="Selenium Tests">
+    <classes>
+      <class name="tests.LoginTests"/>
+      <class name="tests.ProfileTests"/>
+      <class name="tests.SignupTests"/>
+      <class name="tests.AdminCitiesTests"/>
+      <class name="tests.LocaleTests"/>
+      <class name="tests.AuthRoutesTests"/>
+      <!-- Dodaj i ostale test klase po želji -->
+    </classes>
+  </test>
+</suite>
+
+<!-- Desni klik → Run As → TestNG Suite -->

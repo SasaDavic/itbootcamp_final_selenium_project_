@@ -11,7 +11,7 @@ public class ProfileTests extends BasicTests {
 		navPage.getLoginLink().click();
 	//	Log in using valid admin credentials.
 		loginPage.loginAsAdmin();
-		navPage.waitUntilHomeHeaderTitleIsVisible("Welcome Super Administrator");
+		navPage.waitForPageToLoad();
 	//	Navigate to the /profile page.
 		navPage.getMyProfileLink().click();
 	//	Verify that the current URL contains the /profile route.
@@ -59,7 +59,7 @@ public class ProfileTests extends BasicTests {
 	}
 	
 	@Test (priority = 30)
-	public void editProfile() {
+	public void editProfile() throws InterruptedException {
 		
 	//	Click on the login button from the navigation
 		navPage.getLoginLink().click();
@@ -68,16 +68,22 @@ public class ProfileTests extends BasicTests {
 	//	Click on the "My Profile" button from the navigation
 		navPage.getMyProfileLink().click();
 	//	Fill in the form with data
+		myProfilePage.waitForInputToBeClickable(myProfilePage.getNameInput());
 		myProfilePage.clearInputField(myProfilePage.getNameInput());
 		myProfilePage.getNameInput().sendKeys("Sasa Zivkovic");
+		myProfilePage.waitForInputToBeClickable(myProfilePage.getPhoneInput());
 		myProfilePage.clearInputField(myProfilePage.getPhoneInput());
 		myProfilePage.getPhoneInput().sendKeys("+38161283223");
+		myProfilePage.waitForInputToBeClickable(myProfilePage.getCityInput());
 		myProfilePage.clearInputField(myProfilePage.getCityInput());
 		myProfilePage.getCityInput().sendKeys("Bucaramanga");
+		myProfilePage.waitForInputToBeClickable(myProfilePage.getCountryInput());
 		myProfilePage.clearInputField(myProfilePage.getCountryInput());
 		myProfilePage.getCountryInput().sendKeys("Spain");
+		myProfilePage.waitForInputToBeClickable(myProfilePage.getUrlTwitterInput());
 		myProfilePage.clearInputField(myProfilePage.getUrlTwitterInput());
 		myProfilePage.getUrlTwitterInput().sendKeys("https://twitter.com/profile/milan1232");
+		myProfilePage.waitForInputToBeClickable(myProfilePage.getUrlGitHubInput());
 		myProfilePage.clearInputField(myProfilePage.getUrlGitHubInput());
 		myProfilePage.getUrlGitHubInput().sendKeys("https://github.com/SasaDavic");
 	//	Click on the "Save" button
@@ -85,6 +91,7 @@ public class ProfileTests extends BasicTests {
 	//	Verify that the message dialog is visible
 		messagePopUpPage.waitForTheSuccessPopupToBecomeVisible();
 	//	Verify that the message "Profile saved successfully" is displayed
+		Thread.sleep(2000);
 		Assert.assertTrue(messagePopUpPage.getSuccessPopUpMessage().contains("Profile saved successfuly"), 
 				"Message is not as expected! You got message: " + messagePopUpPage.getSuccessPopUpMessage());
 	//	Verify that each input now has a value attribute with the value entered in the form

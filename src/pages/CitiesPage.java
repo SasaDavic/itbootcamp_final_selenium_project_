@@ -66,7 +66,7 @@ public class CitiesPage extends BasePage {
 	}
 	
 	public String getCityName(int rowNumber) {
-		return this.tableRows().get(rowNumber - 1).findElement(By.xpath("//td[2]")).getText();
+		return this.tableRows().get(rowNumber - 1).findElement(By.xpath("./td[2]")).getText();
 	}
 	
 	public void waitForSearchResultsToBe(int resultNumbers) {

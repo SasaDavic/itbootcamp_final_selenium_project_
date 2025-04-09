@@ -1,10 +1,17 @@
 package tests;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.Duration;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -64,10 +71,23 @@ public abstract class BasicTests {
 	}
 
 	@AfterMethod
-	public void afterMethod() {
-	// Clean up after each test, if needed (e.g., clear cookies, etc.)	
-	//afterMethod - gde se kreira screenshot stranice u slucaju da test ne prodje
+	public void takeScreenshotOnFailure(ITestResult result) {
+	    if (ITestResult.FAILURE == result.getStatus()) {
+	    	String timestamp = String.valueOf(System.currentTimeMillis());
+	    	String fileName = "screenshots/" + result.getName() + "_" + timestamp + ".png";
+	        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	    //    String fileName = "screenshots/" + result.getName() + ".png";
+	        try {
+	            Files.copy(screenshot.toPath(), Paths.get(fileName));
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
 	}
+	
+//	public void afterMethod() {
+	// Clean up after each test, if needed (e.g., clear cookies, etc.)	
+	//afterMethod - gde se kreira screenshot stranice u slucaju da test ne prodje }
 	
 	@AfterClass
 	public void afterClass() {

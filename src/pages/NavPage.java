@@ -61,7 +61,7 @@ public class NavPage extends BasePage{
 //		}
 //		return false;
 //	}
-	
+	//**parsiramo zato sto vraca string "true" ne boolean true
 // Improved version: Returns true if the theme is dark (when aria-checked is 'true'), otherwise false for light theme.	
 	public boolean isDarkTheme() {
 		// When the attribute is true, the theme is dark, so it returns true; otherwise, it is light.

@@ -112,6 +112,10 @@ public class LoginTests extends BasicTests {
 	loginPage.waitForPageToLoad();
 	}
 	
+	@Test (priority = 99)
+	public void thisTestAlwaysFails() {
+	    Assert.fail("Namerno pada da bismo testirali screenshot.");
+	}
 	
 	
 }

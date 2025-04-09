@@ -18,6 +18,10 @@ public class MyProfilePage extends BasePage{
 		waitForH1WithText("My profile");
 	}
 	
+	public void waitForInputToBeClickable(WebElement input) {
+		wait.until(ExpectedConditions.elementToBeClickable(input));
+	}
+	
 	public WebElement getEmailInput() {
 		return find(By.id("email"));
 	}
