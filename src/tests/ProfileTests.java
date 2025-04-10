@@ -95,22 +95,22 @@ public class ProfileTests extends BasicTests {
 		Assert.assertTrue(messagePopUpPage.getSuccessPopUpMessage().contains("Profile saved successfuly"), 
 				"Message is not as expected! You got message: " + messagePopUpPage.getSuccessPopUpMessage());
 	//	Verify that each input now has a value attribute with the value entered in the form
-		Assert.assertEquals(myProfilePage.getNameInput().getText(), 
+		Assert.assertEquals(myProfilePage.getNameInput().getAttribute("value"), //getText() is foe text between brackets <> <>
 				"Sasa Zivkovic", 
 				"Name is not as expected!");
-		Assert.assertEquals(myProfilePage.getPhoneInput().getText(), 
+		Assert.assertEquals(myProfilePage.getPhoneInput().getAttribute("value"), 
 				"+38161283223", 
 				"Phone number is not as expected!");
-		Assert.assertEquals(myProfilePage.getCityInput().getText(), 
+		Assert.assertEquals(myProfilePage.getCityInput().getAttribute("value"), 
 				"Bucaramanga", 
 				"City is not as expected!");
-		Assert.assertEquals(myProfilePage.getCountryInput().getText(), 
+		Assert.assertEquals(myProfilePage.getCountryInput().getAttribute("value"), 
 				"Spain", 
 				"Country is not as expected!");
-		Assert.assertEquals(myProfilePage.getUrlTwitterInput().getText(), 
+		Assert.assertEquals(myProfilePage.getUrlTwitterInput().getAttribute("value"), 
 				"https://twitter.com/profile/milan1232", 
 				"Twitter is not as expected!");
-		Assert.assertEquals(myProfilePage.getUrlGitHubInput().getText(), 
+		Assert.assertEquals(myProfilePage.getUrlGitHubInput().getAttribute("value"), 
 				"https://github.com/SasaDavic", 
 				"GitHub is not as expected!");
 	//	Click on the logout button

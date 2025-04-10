@@ -74,10 +74,12 @@ public abstract class BasicTests {
 	public void takeScreenshotOnFailure(ITestResult result) {
 	    if (ITestResult.FAILURE == result.getStatus()) {
 	    	String timestamp = String.valueOf(System.currentTimeMillis());
+	    	String folderPath = "screenshots";
 	    	String fileName = "screenshots/" + result.getName() + "_" + timestamp + ".png";
 	        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 	    //    String fileName = "screenshots/" + result.getName() + ".png";
 	        try {
+	        	Files.createDirectories(Paths.get(folderPath)); // ✅ Kreira folder ako ne postoji
 	            Files.copy(screenshot.toPath(), Paths.get(fileName));
 	        } catch (IOException e) {
 	            e.printStackTrace();
