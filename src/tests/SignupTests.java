@@ -1,9 +1,7 @@
 package tests;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 public class SignupTests extends BasicTests {
 	
@@ -76,8 +74,8 @@ public class SignupTests extends BasicTests {
 //	Click the sign-up button in the navigation
 	navPage.getSignUpLink().click();
 //	Fill in the registration form with the provided data
-	signupPage.getNameInput().sendKeys("Sasa Zivkovic0");
-	signupPage.getEmailInput().sendKeys("sasa.zivkovic0@itbootcamp.rs");
+	signupPage.getNameInput().sendKeys("Sasa Zivkovic");
+	signupPage.getEmailInput().sendKeys("sasa.zivkovic@itbootcamp.rs");
 	signupPage.getPasswordInput().sendKeys("12345");
 	signupPage.getConfirmPasswordInput().sendKeys("12345");
 //	Click the sign-up button

@@ -1,6 +1,5 @@
 package tests;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -112,7 +111,7 @@ public class LoginTests extends BasicTests {
 	loginPage.waitForPageToLoad();
 	}
 	
-	@Test (priority = 99)
+//	@Test (priority = 99)
 	public void thisTestAlwaysFails() {
 	    Assert.fail("Namerno pada da bismo testirali screenshot.");
 	}

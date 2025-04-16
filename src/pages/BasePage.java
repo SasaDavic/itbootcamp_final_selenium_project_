@@ -33,6 +33,7 @@ abstract class BasePage {
 	}
 	
 	protected void clickOnButton(WebElement button) {
+		wait.until(ExpectedConditions.elementToBeClickable(button));
 		actions.moveToElement(button)
 			.click()
 			.perform();

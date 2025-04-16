@@ -85,7 +85,7 @@ public class ProfileTests extends BasicTests {
 		myProfilePage.getUrlTwitterInput().sendKeys("https://twitter.com/profile/milan1232");
 		myProfilePage.waitForInputToBeClickable(myProfilePage.getUrlGitHubInput());
 		myProfilePage.clearInputField(myProfilePage.getUrlGitHubInput());
-		myProfilePage.getUrlGitHubInput().sendKeys("https://github.com/SasaDavic");
+		myProfilePage.getUrlGitHubInput().sendKeys("https://github.com/sasadavic");
 	//	Click on the "Save" button
 		myProfilePage.getSaveButton().click();
 	//	Verify that the message dialog is visible
@@ -111,7 +111,7 @@ public class ProfileTests extends BasicTests {
 				"https://twitter.com/profile/milan1232", 
 				"Twitter is not as expected!");
 		Assert.assertEquals(myProfilePage.getUrlGitHubInput().getAttribute("value"), 
-				"https://github.com/SasaDavic", 
+				"https://github.com/sasadavic", 
 				"GitHub is not as expected!");
 	//	Click on the logout button
 		navPage.getLogoutButton().click();
